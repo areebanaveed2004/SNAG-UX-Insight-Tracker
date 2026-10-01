@@ -22,7 +22,7 @@ The sign-up form deliberately includes two look-alike decoy buttons ("Create pro
 No build step and no install.
 
 ```bash
-git clone https://github.com/<your-username>/snag-ux-insight-tracker.git
+git clone https://github.com/areebanaveed2004/snag-ux-insight-tracker.git
 cd snag-ux-insight-tracker
 ```
 
