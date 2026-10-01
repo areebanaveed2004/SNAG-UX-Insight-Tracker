@@ -132,4 +132,4 @@ snag-ux-insight-tracker/
 
 ## Author
 
-[Your name] - HCI project.
+Areeba Naveed
