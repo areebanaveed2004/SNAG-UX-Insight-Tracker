@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX Insight Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Researcher bar: excluded from tracking -->
+<div id="console">
+  <div class="bar-task"><b>Task:</b> create an account on Northlight (name, valid email, plan, accept terms, press <b>Create account</b>)</div>
+  <div class="bar-actions">
+    <button id="startBtn" class="primary">Start session</button>
+    <button id="finishBtn" disabled>Give up</button>
+  </div>
+  <p id="status">Press Start session to begin recording.</p>
+  <dl id="live" class="stats"></dl>
+</div>
+
+<!-- Site under test -->
+<div id="sut">
+  <nav class="nav">
+    <span class="logo">Northlight</span>
+    <div class="links"><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#signup">Sign up</a></div>
+  </nav>
+
+  <section class="hero">
+    <p class="badge">New: team workspaces</p>
+    <h1>Plan work the way your team actually works</h1>
+    <p class="lead">Northlight brings tasks, notes and deadlines into one calm workspace, so nothing slips between chats and spreadsheets.</p>
+    <div class="cta">
+      <a class="btn solid" href="#signup">Get started free</a>
+      <a class="btn ghost" href="#features">See how it works</a>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="mock-col"><h4>To do</h4><span>Write launch brief</span><span>Review designs</span></div>
+      <div class="mock-col"><h4>In progress</h4><span>Customer interviews</span></div>
+      <div class="mock-col"><h4>Done</h4><span>Set up workspace</span><span>Invite team</span></div>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <h2>Everything in one place</h2>
+    <div class="cards">
+      <article class="card"><div class="icon">&#9776;</div><h3>Boards</h3><p>Drag tasks across clear stages and see the whole project at a glance.</p></article>
+      <article class="card"><div class="icon">&#9998;</div><h3>Notes</h3><p>Write docs beside the tasks they belong to, with no tab switching.</p></article>
+      <article class="card"><div class="icon">&#9200;</div><h3>Reminders</h3><p>Gentle nudges before deadlines, tuned to how you work.</p></article>
+    </div>
+  </section>
+
+  <section id="pricing" class="section">
+    <h2>Simple pricing</h2>
+    <div class="cards">
+      <article class="card"><h3>Free</h3><p class="price">$0</p><p>One project, unlimited notes.</p></article>
+      <article class="card featured"><h3>Pro</h3><p class="price">$8<small>/month</small></p><p>Unlimited projects and priority support.</p></article>
+      <article class="card"><h3>Team</h3><p class="price">$20<small>/month</small></p><p>Shared workspaces, roles and audit log.</p></article>
+    </div>
+  </section>
+
+  <section id="signup" class="section">
+    <div class="signup">
+      <div>
+        <h2>Create your account</h2>
+        <p class="lead">Free to start. No card needed.</p>
+      </div>
+      <form id="regForm" novalidate>
+        <label>Full name <input id="name" type="text" autocomplete="off"></label>
+        <label>Email <input id="email" type="email" autocomplete="off"></label>
+        <label>Plan
+          <select id="plan"><option value="">Choose a plan</option><option>Free</option><option>Pro</option><option>Team</option></select>
+        </label>
+        <label class="check"><input id="terms" type="checkbox"> I accept the terms of use</label>
+        <p id="formMsg" class="error" role="alert"></p>
+        <div class="row">
+          <button type="button" data-decoy="1" class="btn solid soft">Create profile</button>
+          <button type="button" data-decoy="1" class="btn solid soft">Sign up later</button>
+          <button type="submit" id="goal" class="btn solid">Create account</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span class="logo">Northlight</span>
+    <p>Northlight stores your name and email to run your account. You can delete your account at any time from settings.</p>
+  </footer>
+</div>
+
+<section id="results" class="panel" hidden>
+  <h2>Session report</h2>
+  <div id="scoreBox"></div>
+  <dl id="final" class="stats"></dl>
+  <h3>Findings</h3>
+  <ul id="findings"></ul>
+  <h3>Click heatmap</h3>
+  <p class="muted">Every click is saved as an x/y pixel position on the page. The heatmap draws those points over the site, hotter where clicks cluster. Keep the window the same size as during the session.</p>
+  <div class="row"><button id="heatBtn">Show heatmap on page</button></div>
+  <p id="heatNote" class="muted"></p>
+  <div class="row">
+    <button id="jsonBtn">Export JSON</button>
+    <button id="csvBtn">Export event log (CSV)</button>
+  </div>
+  <h3>Optional: AI-written report</h3>
+  <p class="muted">Paste your own Google Gemini API key. It stays in this tab's memory only and is never saved.</p>
+  <div class="row">
+    <input id="apiKey" type="password" placeholder="Gemini API key" autocomplete="off">
+    <button id="aiBtn">Generate AI report</button>
+  </div>
+  <pre id="aiOut"></pre>
+</section>
+
+<script src="tracker.js"></script>
+</body>
+</html>
